@@ -1,34 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+
+let commandOutputs:string[] = [
+  "Welcomes to bashzzz"
+]
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cmd, setCmd] = useState("")
+
+  const [displayCmd, setDisplayCmd] = useState()
+
+  const user:string = "user"
+  let directory:string = "~"
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="portfolio">
+
+    <div className="terminal">
+        {displayCmd}
+    </div>
+
+    <div className="InputField">
+      <p>[{user}@evans-portfolio {directory}]$</p>
+      <input onChange={e => setCmd(e.target.value)}></input>
+
+      <button onClick={() => {
+        commandOutputs.push(cmd)
+        
+        setDisplayCmd(commandOutputs.map(command => <p>{command}</p>))
+      }}>Exec</button>
+    </div>
+
+   </div>
   )
 }
 
