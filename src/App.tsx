@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
+import { readCommand } from './commandHandler/commandReader';
 
 let commandOutputs:string[] = [
-  "Welcomes to bashzzz"
+  ""
 ]
 
 function App() {
   const [cmd, setCmd] = useState("")
 
-  const [displayCmd, setDisplayCmd] = useState()
+  const [displayCmd, setDisplayCmd] = useState(commandOutputs.map(command => <p>{command}</p>))
 
   const user:string = "user"
   let directory:string = "~"
+  
+  const commandRun = () => {
+    commandOutputs.push(readCommand(cmd));
+    
+    setDisplayCmd(commandOutputs.map(command => <p>{command}</p>))
+  }
 
   return (
     <div className="portfolio">
@@ -20,14 +27,13 @@ function App() {
     </div>
 
     <div className="InputField">
-      <p>[{user}@evans-portfolio {directory}]$</p>
-      <input onChange={e => setCmd(e.target.value)}></input>
+      <p className='prompt'>[{user}@evans-portfolio {directory}]$</p>
+      <input placeholder='□' onChange={e => setCmd(e.target.value)}></input>
 
-      <button onClick={() => {
-        commandOutputs.push(cmd)
-        
-        setDisplayCmd(commandOutputs.map(command => <p>{command}</p>))
-      }}>Exec</button>
+      <button onClick={commandRun} onKeyDown={e => {
+        if(e.key != "Enter") return;
+        commandRun
+      }}>Run</button>
     </div>
 
    </div>

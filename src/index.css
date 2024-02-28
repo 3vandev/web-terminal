@@ -1,0 +1,33 @@
+.InputField {
+  width: 100%;    
+  display: flex;
+  color:white;
+}
+
+.InputField input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color:rgb(15, 116, 69);
+}
+
+.InputField button {
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+p {
+  color:rgb(15, 116, 69);
+}
+
+html {
+  background-color: rgb(28, 28, 34);
+  font-family: monospace;
+  font-size: large;
+  font-weight: 500;
+}
+
+.prompt {
+  color: rgb(35, 155, 35)
+}
