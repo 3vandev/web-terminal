@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { readCommand } from './commandHandler/commandReader';
 
-let commandOutputs:string[] = [
+let commandOutputs:any[] = [
   ""
 ]
 
 function App() {
   const [cmd, setCmd] = useState("")
-
   const [displayCmd, setDisplayCmd] = useState(commandOutputs.map(command => <p>{command}</p>))
-
   const user:string = "user"
   let directory:string = "~"
   
   const commandRun = () => {
-    commandOutputs.push(readCommand(cmd));
+    commandOutputs.push(<p className='prompt'>[{user}@evans-portfolio {directory}]$ {cmd}</p>);
+    commandOutputs.push(readCommand(cmd))
     
     setDisplayCmd(commandOutputs.map(command => <p>{command}</p>))
   }
