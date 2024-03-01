@@ -1,4 +1,5 @@
 import { commands } from "./commands";
+
 export const readCommand = (command: string) => {
     // Split the command up
     const splitCommand = (

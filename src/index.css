@@ -19,6 +19,7 @@
 
 p {
   color:rgb(15, 116, 69);
+  line-height: 0px; 
 }
 
 html {
